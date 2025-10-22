@@ -1,0 +1,6 @@
+#include <bits/stdc++.h>
+void reverseArray(vector<int> &a , int m) {
+    reverse(a.begin()+m+1,a.end());
+    // for(auto i:a) cout<<i<<" ";
+    // cout<<endl;   	
+}
