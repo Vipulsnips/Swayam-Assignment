@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+class Solution {
+public:
+    int minimumDeletions(vector<int>& a) {
+        auto it1=max_element(a.begin(),a.end());
+        auto it2=min_element(a.begin(),a.end());
+        int i=distance(a.begin(),it1),j=distance(a.begin(),it2);
+        int maxm=max(i,j),minm=min(i,j);
+        int ans=maxm+1, n= a.size();
+        ans=min(ans, n-minm);
+        ans=min(ans, minm+1+n-maxm);
+        ans=min(ans, maxm+1 + n -minm);
+
+        return ans;
+    }
+};
