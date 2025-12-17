@@ -1,75 +1,68 @@
 class Solution {
 public:
-    int N, budget;
-    vector<int> present, future;
-    map<pair<int, int>, vector<int>> dp;
-    unordered_map<int, vector<int>> adj;
+    int maxProfit(int n, vector<int>& present, vector<int>& future,
+                  vector<vector<int>>& hierarchy, int budget) {
 
-    vector<int> dfs (int node, int discount) {
-        auto key = make_pair(node, discount);
-        if (dp.find(key) != dp.end()) {
-            return dp[key];
+        unordered_map<int, vector<int>> mp;
+        vector<int> indeg(n + 1, 0);
+        vector<int> boss(n + 1, 0);
+        vector<int> purchase(n + 1, 0);
+
+        for (auto &i : hierarchy) {
+            boss[i[1]] = i[0];
+            mp[i[0]].push_back(i[1]);
+            indeg[i[1]]++;
         }
 
-        // Case 1: dont take the current node, discount is not considered (discount is 0)
-        vector<int> notTake(budget + 1, 0);
-        for (int childNode: adj[node]) {
-            vector<int> childVec = dfs(childNode, 0);
-            vector<int> temp(budget + 1, 0);
+        // Topological sort
+        queue<int> q;
+        vector<int> topo;
+        for (int i = 1; i <= n; i++)
+            if (indeg[i] == 0) q.push(i);
 
-            for (int b = 0; b <= budget; b++) {
-                for (int k = 0; k <= b; k++) {
-                    temp[b] = max(temp[b], notTake[k] + childVec[b - k]);
-                }
+        while (!q.empty()) {
+            int curr = q.front(); q.pop();
+            topo.push_back(curr);
+            for (auto v : mp[curr]) {
+                indeg[v]--;
+                if (indeg[v] == 0) q.push(v);
             }
-
-            notTake = temp;
         }
 
-        // Case 2: take the current node, discount is considered (discount is 1)
-        int price = (discount ? present[node] / 2 : present[node]);
-        int profit = future[node] - price;
-
-        vector<int> take(budget + 1, 0);
-        for (int childNode: adj[node]) {
-            vector<int> childVec = dfs(childNode, 1);
-            vector<int> temp(budget + 1);
-
-            for (int b = 0; b <= budget; b++) {
-                for (int k = 0; k <= b; k++) {
-                    temp[b] = max(temp[b], take[k] + childVec[b - k]);
-                }
-            }
-            
-            take = temp;
-        }
-
-        vector<int> takeProfit(budget + 1, -1e9);
-        vector<int> ans(budget + 1);
-
-        for (int b = 0; b <= budget; b++) {
-            if (b >= price) {
-                takeProfit[b] = profit + take[b - price];
-            }
-
-            ans[b] = max({notTake[b], takeProfit[b], 0});
-        }
-        
-        return dp[key] = ans;
+        return solve(0, n, present, boss, future, budget, purchase, topo);
     }
 
-    int maxProfit(int n, vector<int>& _present, vector<int>& _future, vector<vector<int>>& hierarchy, int b) {
-        N = n;
-        present = _present;
-        future = _future;
-        budget = b;
+    int solve(int i, int n,
+              vector<int>& present,
+              vector<int>& boss,
+              vector<int>& future,
+              int budget,
+              vector<int>& purchase,
+              vector<int>& topo) {
 
-        for (vector<int>& nums: hierarchy) {
-            int u = nums[0] - 1, v = nums[1] - 1;
-            adj[u].push_back(v);
+        if (i == n) return 0;          // ✅ correct base
+        if (budget < 0) return -1e9;
+
+        int node = topo[i];            // ✅ correct index
+        int price = present[node - 1];
+
+        // ✅ safe boss check
+        if (boss[node] != 0 && purchase[boss[node]])
+            price /= 2;
+
+        // Skip option
+        int skip = solve(i + 1, n, present, boss, future, budget, purchase, topo);
+
+        // Take option
+        int take = -1e9;
+        if (price <= budget) {
+            purchase[node] = 1;
+            take = (future[node - 1] - price)
+                   + solve(i + 1, n, present, boss, future,
+                           budget - price, purchase, topo);
+            purchase[node] = 0;
         }
 
-        vector<int> ans = dfs(0, 0);
-        return *max_element(ans.begin(), ans.end());
+        return max(take, skip);
     }
 };
