@@ -8,6 +8,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0123-best-time-to-buy-and-sell-stock-iii](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/0123-best-time-to-buy-and-sell-stock-iii) |
 | [0955-delete-columns-to-make-sorted-ii](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/0955-delete-columns-to-make-sorted-ii) |
 | [0960-delete-columns-to-make-sorted-iii](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/0960-delete-columns-to-make-sorted-iii) |
+| [2054-two-best-non-overlapping-events](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/2054-two-best-non-overlapping-events) |
 | [2110-number-of-smooth-descent-periods-of-a-stock](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/2110-number-of-smooth-descent-periods-of-a-stock) |
 | [3531-count-covered-buildings](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/3531-count-covered-buildings) |
 | [3562-maximum-profit-from-trading-stocks-with-discounts](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/3562-maximum-profit-from-trading-stocks-with-discounts) |
@@ -37,6 +38,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 ## Sorting
 |  |
 | ------- |
+| [2054-two-best-non-overlapping-events](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/2054-two-best-non-overlapping-events) |
 | [2092-find-all-people-with-secret](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/2092-find-all-people-with-secret) |
 | [3531-count-covered-buildings](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/3531-count-covered-buildings) |
 | [3606-coupon-code-validator](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/3606-coupon-code-validator) |
@@ -53,6 +55,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0122-best-time-to-buy-and-sell-stock-ii](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/0122-best-time-to-buy-and-sell-stock-ii) |
 | [0123-best-time-to-buy-and-sell-stock-iii](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/0123-best-time-to-buy-and-sell-stock-iii) |
 | [0960-delete-columns-to-make-sorted-iii](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/0960-delete-columns-to-make-sorted-iii) |
+| [2054-two-best-non-overlapping-events](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/2054-two-best-non-overlapping-events) |
 | [2110-number-of-smooth-descent-periods-of-a-stock](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/2110-number-of-smooth-descent-periods-of-a-stock) |
 | [2147-number-of-ways-to-divide-a-long-corridor](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/2147-number-of-ways-to-divide-a-long-corridor) |
 | [3562-maximum-profit-from-trading-stocks-with-discounts](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/3562-maximum-profit-from-trading-stocks-with-discounts) |
@@ -91,4 +94,12 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [2092-find-all-people-with-secret](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/2092-find-all-people-with-secret) |
+## Binary Search
+|  |
+| ------- |
+| [2054-two-best-non-overlapping-events](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/2054-two-best-non-overlapping-events) |
+## Heap (Priority Queue)
+|  |
+| ------- |
+| [2054-two-best-non-overlapping-events](https://github.com/Vipulsnips/Swayam-Assignment/tree/master/2054-two-best-non-overlapping-events) |
 <!---LeetCode Topics End-->
