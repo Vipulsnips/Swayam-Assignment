@@ -5,7 +5,9 @@ public:
         sort(a.rbegin(),a.rend());
         ll minus=0,cnt=0;
         for(int i=0;i<a.size(),k--;i++){
-            cnt+=max(0LL,a[i]-minus);
+            ll curr=max(0LL,a[i]-minus);
+            if(curr==0) break;
+            cnt+=curr;
             minus++;
         }
         return cnt;
