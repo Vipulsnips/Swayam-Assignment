@@ -1,61 +1,37 @@
 class Solution {
 public:
-    bool check(int i, int j, vector<vector<int>>& grid) {
-        int n = grid.size();
-        int m = grid[0].size();
+    bool isMagicSquare(vector<vector<int>>& grid, int r, int c) {
+        int sum = grid[r][c] + grid[r][c+1] + grid[r][c+2];
+        unordered_set<int> st;
 
-        set<int> s;
-        vector<int> row(3, 0);
-        vector<int> col(3, 0);
-        for (int k = i; k < i + 3; k++) {
-            for (int l = j; l < j + 3; l++) {
-                if (grid[k][l] > 9 || s.find(grid[k][l]) != s.end() ||grid[k][l] <1) {
-                    return false;
-                }
-                s.insert(grid[k][l]);
-                row[k - i] += grid[k][l];
-                col[l - j] += grid[k][l];
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                int num = grid[r+i][c+j];
+                if(num < 1 || num > 9 || st.count(num)) return false;
+                st.insert(num);
             }
         }
 
-        int sum = row[0];
-
-        for (int i = 0; i < 3; i++) {
-
-            if (row[i] != sum || col[i] != sum) {
-                return false;
-            }
-        }
-        int diagonal = 0;
-        for (int k = 0; k < 3; k++) {
-            diagonal += grid[k + i][k + j];
-        }
-        if (sum != diagonal) {
-            return false;
-        }
-        diagonal = 0;
-        for (int k = 0; k < 3; k++) {
-            diagonal += grid[i + 2 - k][k + j];
+        for(int i = 0; i < 3; i++) {
+            if(grid[r][c+i] + grid[r+1][c+i] + grid[r+2][c+i] != sum) return false;
+            if(grid[r+i][c] + grid[r+i][c+1] + grid[r+i][c+2] != sum) return false;
         }
 
-        if (sum != diagonal) {
-            return false;
-        }
+        if(grid[r][c] + grid[r+1][c+1] + grid[r+2][c+2] != sum) return false;
+        if(grid[r][c+2] + grid[r+1][c+1] + grid[r+2][c] != sum) return false;
 
         return true;
     }
+
     int numMagicSquaresInside(vector<vector<int>>& grid) {
-        int n = grid.size();
-        int m = grid[0].size();
-        int count = 0;
-        for (int i = 0; i < n - 2; i++) {
-            for (int j = 0; j < m - 2; j++) {
-                if (check(i, j, grid)) {
-                    count++;
-                }
+        int m = grid.size(), n = grid[0].size();
+        int cnt = 0;
+
+        for(int i = 0; i <= m - 3; i++) {
+            for(int j = 0; j <= n - 3; j++) {
+                if(isMagicSquare(grid, i, j)) cnt++;
             }
         }
-
-        return count;
+        return cnt;
     }
 };
